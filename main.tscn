@@ -1,0 +1,204 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Node2D.gd" type="Script" id=1]
+
+[sub_resource type="Theme" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "win!"
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -242.0
+margin_top = -124.0
+margin_right = 1468.0
+margin_bottom = 844.0
+color = Color( 0, 0.360784, 0.0313726, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="ColorRect"]
+margin_left = 82.0
+margin_top = 2.0
+margin_right = 1215.0
+margin_bottom = 664.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="new" type="Button" parent="ColorRect"]
+margin_left = 517.315
+margin_top = 232.894
+margin_right = 617.315
+margin_bottom = 280.894
+text = "new game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="ColorRect"]
+margin_left = 383.596
+margin_top = 301.677
+margin_right = 760.596
+margin_bottom = 431.677
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="number1" type="Button" parent="ColorRect/Control"]
+margin_top = 15.0
+margin_right = 64.0
+margin_bottom = 93.0
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="number2" type="Button" parent="ColorRect/Control"]
+margin_left = 100.0
+margin_top = 15.0
+margin_right = 164.0
+margin_bottom = 93.0
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="number3" type="Button" parent="ColorRect/Control"]
+margin_left = 200.0
+margin_top = 15.0
+margin_right = 264.0
+margin_bottom = 93.0
+rect_pivot_offset = Vector2( 98.5013, 21.9618 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="check" type="Button" parent="ColorRect/Control"]
+margin_left = 125.0
+margin_top = 102.534
+margin_right = 239.0
+margin_bottom = 123.534
+disabled = true
+text = "Check"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="number4" type="Button" parent="ColorRect/Control"]
+margin_left = 300.0
+margin_top = 15.0
+margin_right = 364.0
+margin_bottom = 93.0
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="ColorRect"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect/Control2"]
+visible = false
+margin_left = 390.0
+margin_top = 174.0
+margin_right = 440.0
+margin_bottom = 287.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Control2/HBoxContainer2"]
+margin_right = 50.0
+margin_bottom = 113.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect/Control2"]
+margin_left = 775.0
+margin_top = 161.0
+margin_right = 882.0
+margin_bottom = 457.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/Control2/ScrollContainer"]
+margin_right = 107.0
+margin_bottom = 296.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemList" type="ItemList" parent="ColorRect/Control2/ScrollContainer/HBoxContainer"]
+margin_right = 23.0
+margin_bottom = 296.0
+size_flags_horizontal = 3
+theme = SubResource( 2 )
+auto_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemList2" type="ItemList" parent="ColorRect/Control2/ScrollContainer/HBoxContainer"]
+margin_left = 27.0
+margin_right = 51.0
+margin_bottom = 296.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemList3" type="ItemList" parent="ColorRect/Control2/ScrollContainer/HBoxContainer"]
+margin_left = 55.0
+margin_right = 79.0
+margin_bottom = 296.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemList4" type="ItemList" parent="ColorRect/Control2/ScrollContainer/HBoxContainer"]
+margin_left = 83.0
+margin_right = 107.0
+margin_bottom = 296.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 385.738, 185.726 )
+current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
+anims/win! = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="Camera2D"]
+emitting = false
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_left = 332.258
+margin_top = 57.3795
+margin_right = 409.258
+margin_bottom = 77.3795
+text = "You Win!!!"
+
+[connection signal="button_up" from="ColorRect/new" to="." method="_on_new_button_up"]
+[connection signal="button_up" from="ColorRect/Control/number1" to="." method="_on_number1_button_up"]
+[connection signal="button_up" from="ColorRect/Control/number2" to="." method="_on_number2_button_up"]
+[connection signal="button_up" from="ColorRect/Control/number3" to="." method="_on_number3_button_up"]
+[connection signal="button_up" from="ColorRect/Control/check" to="." method="_on_check_button_up"]
+[connection signal="button_up" from="ColorRect/Control/number4" to="." method="_on_number4_button_up"]
