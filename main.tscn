@@ -1,0 +1,129 @@
+[gd_scene load_steps=8 format=3 uid="uid://cp8k0i07ufjym"]
+
+[ext_resource type="Script" uid="uid://4hcniixi06wk" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://b8rn22kw03hge" path="res://terminal_OLD.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://5rvlhuhfxjo" path="res://terminal.gd" id="3_h2yge"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2yge"]
+
+[sub_resource type="Theme" id="Theme_h2yge"]
+LineEdit/colors/caret_color = Color(0, 0, 0, 1)
+LineEdit/colors/clear_button_color = Color(0, 0, 0, 1)
+LineEdit/colors/clear_button_color_pressed = Color(0, 0, 0, 1)
+LineEdit/colors/font_color = Color(0, 1, 0, 1)
+LineEdit/colors/font_outline_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_placeholder_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_selected_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_uneditable_color = Color(0, 0, 0, 1)
+LineEdit/colors/selection_color = Color(1, 1, 1, 1)
+LineEdit/constants/caret_width = 0
+LineEdit/constants/minimum_character_width = 0
+LineEdit/constants/outline_size = 0
+LineEdit/font_sizes/font_size = 16
+LineEdit/fonts/font = null
+LineEdit/icons/clear = null
+LineEdit/styles/focus = SubResource("StyleBoxFlat_1bvp3")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_h2yge")
+LineEdit/styles/read_only = null
+
+[sub_resource type="SyntaxHighlighter" id="SyntaxHighlighter_0xm2m"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_ig7tw")
+
+[node name="monitor" type="ColorRect" parent="."]
+offset_left = -2.0
+offset_top = -7.0
+offset_right = 1196.0
+offset_bottom = 671.0
+color = Color(0.0509804, 0.0862745, 0.0627451, 1)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 494.0
+offset_top = 116.0
+offset_right = 534.0
+offset_bottom = 139.0
+text = "Test"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = 356.0
+offset_top = 447.0
+offset_right = 696.0
+offset_bottom = 478.0
+theme = SubResource("Theme_h2yge")
+keep_editing_on_text_submit = true
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+clear_button_enabled = true
+flat = true
+
+[node name="terminal_OLD" type="TextEdit" parent="."]
+visible = false
+offset_left = 370.0
+offset_top = 165.0
+offset_right = 653.0
+offset_bottom = 400.0
+editable = false
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+autowrap_mode = 1
+caret_type = 1
+caret_blink = true
+caret_move_on_right_click = false
+caret_multiple = false
+syntax_highlighter = SubResource("SyntaxHighlighter_0xm2m")
+script = ExtResource("2_0xm2m")
+
+[node name="terminal" type="RichTextLabel" parent="."]
+offset_left = 388.0
+offset_top = 158.0
+offset_right = 660.0
+offset_bottom = 398.0
+bbcode_enabled = true
+text = "[color=green]"
+scroll_following = true
+shortcut_keys_enabled = false
+script = ExtResource("3_h2yge")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 802.0
+offset_top = 73.0
+offset_right = 1059.0
+offset_bottom = 396.0
+rotation = -0.273308
+color = Color(0.980392, 0.984314, 0.623529, 1)
+metadata/_edit_group_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="ColorRect2"]
+layout_mode = 0
+offset_top = 3.05176e-05
+offset_right = 257.0
+offset_bottom = 17.0
+color = Color(0.962041, 0.961776, 0.469263, 1)
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="ColorRect2"]
+layout_mode = 0
+offset_left = 11.3574
+offset_top = 18.762
+offset_right = 246.357
+offset_bottom = 317.762
+rotation = 0.000848293
+bbcode_enabled = true
+text = "[color=black][color=red]red[/color] - digit is not in my password
+[color=goldenrod]yellow[/color] - digit is in my password, but you guessed it at the wrong position
+[color=green]green[/color] - this digit was guessed correctly (or your input wasn't a 4-digit number)
+[color=purple]purple[/color] - this digit was also guessed correctly, but it occures more than once in my password"
+
+[connection signal="text_submitted" from="LineEdit" to="terminal_OLD" method="_on_line_edit_text_submitted"]
+[connection signal="text_submitted" from="LineEdit" to="terminal" method="_on_line_edit_text_submitted"]
+[connection signal="caret_changed" from="terminal_OLD" to="terminal_OLD" method="_on_caret_changed"]
+[connection signal="mouse_entered" from="terminal_OLD" to="terminal_OLD" method="_on_terminal_mouse_entered"]
